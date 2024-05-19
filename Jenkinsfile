@@ -1,9 +1,9 @@
 pipeline {
     agent any
-    environment {
-        NODEJS_HOME = tool 'my-node' // Utiliza el nombre de NodeJS que has definido
-        PATH = "${NODEJS_HOME}/bin:${env.PATH}"
-    }
+    tools{
+        nodems "NodeJS"
+ }
+    
     stages {
         stage('Checkout') {
             steps {
