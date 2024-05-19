@@ -5,12 +5,16 @@ pipeline {
         nodejs 'my-node' // Nombre del tool de Node.js configurado en Jenkins
     }
     stages {
-        stage('Preparation') {
+      stage('Preparation') {
             steps {
-                sh 'echo "PATH: $PATH"' // Imprime el PATH para verificar las ubicaciones de Node.js y npm
-                sh 'node --version' // Verifica la versión de Node.js
-                sh 'npm --version' // Verifica la versión de npm
-                sh 'env' // Imprime las variables de entorno para ver la configuración general
+                script {
+                    def nodeHome = tool name: 'my-node', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+                    env.PATH = "${nodeHome}/bin:${env.PATH}"
+                }
+                sh 'echo "Using Node.js version:"'
+                sh 'node --version'
+                sh 'echo "Using npm version:"'
+                sh 'npm --version'
             }
         }
         stage('Install Dependencies') {
