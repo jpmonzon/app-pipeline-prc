@@ -1,50 +1,36 @@
 pipeline {
     agent any
-    tools{
-        nodejs "my-node"
- }
-    
+    tools {
+        nodejs "my-node" // Nombre que diste a la instalación de NodeJS en Jenkins
+    }
     stages {
-        stage('Checkout') {
+        stage('Install Dependencies') {
             steps {
-                // Clonar el repositorio desde GitHub
-                git branch: 'main', url: 'https://github.com/jpmonzon/app-pipeline-prc.git'
+                sh 'npm install'
             }
         }
-        
-         stage('Install Dependencies') {
-            steps {
-                script {
-                    sh 'npm install'
-                }
-            }
-        }
-        
         stage('Build') {
             steps {
-                // Construir el proyecto Node.js
                 sh 'npm run build'
             }
         }
         stage('Test') {
             steps {
-                // Ejecutar pruebas unitarias
                 sh 'npm test'
             }
         }
         stage('Deploy') {
             steps {
-                // Construir y desplegar la imagen Docker
-                sh '''
-                docker build -t jpmonzon/app-pipeline-prc .
-                docker run -d -p 80:80 jpmonzon/app-pipeline-prc
-                '''
+                // Agrega tus comandos de despliegue aquí
             }
         }
     }
     post {
+        always {
+            echo 'Pipeline finished.'
+        }
         success {
-            echo 'Pipeline completed successfully.'
+            echo 'Pipeline succeeded.'
         }
         failure {
             echo 'Pipeline failed.'
