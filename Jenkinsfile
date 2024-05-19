@@ -6,6 +6,11 @@ pipeline {
     }
 
     stages {
+     stage('Print PATH') {
+            steps {
+                sh 'echo $PATH'
+            }
+        }
         stage('Checkout') {
             steps {
                 script {
