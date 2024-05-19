@@ -11,6 +11,17 @@ pipeline {
                 sh 'echo $PATH'
             }
         }
+        stage('Check Node.js version') {
+            steps {
+                sh 'node -v'
+                sh 'npm -v'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
         stage('Checkout') {
             steps {
                 script {
