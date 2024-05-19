@@ -4,12 +4,13 @@ pipeline {
     tools {
         nodejs 'my-node' // Nombre del tool de Node.js configurado en Jenkins
     }
-        stage('Install Dependencies') {
+        stages {
+            stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
         }
-    
+    }
        
 
     post {
