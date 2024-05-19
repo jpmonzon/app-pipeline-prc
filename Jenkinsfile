@@ -5,7 +5,7 @@ pipeline {
         nodejs 'my-node' // Nombre del tool de Node.js configurado en Jenkins
     }
     stages {
-      stage('Preparation') {
+     /* stage('Preparation') {
             steps {
                 script {
                     def nodeHome = tool name: 'my-node', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
@@ -16,7 +16,7 @@ pipeline {
                 sh 'echo "Using npm version:"'
                 sh 'npm --version'
             }
-        }
+        }*/
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
