@@ -19,11 +19,7 @@ pipeline {
                 sh 'npm test'
             }
         }
-        stage('Deploy') {
-            steps {
-                // Agrega tus comandos de despliegue aquí
-            }
-        }
+
     }
     post {
         always {
