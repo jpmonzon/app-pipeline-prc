@@ -8,14 +8,15 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/jpmonzon/app-pipeline-prc.git'
             }
         }
-    stages {
-        stage('Install Dependencies') {
+        
+         stage('Install Dependencies') {
             steps {
                 script {
                     sh 'npm install'
                 }
             }
         }
+        
         stage('Build') {
             steps {
                 // Construir el proyecto Node.js
