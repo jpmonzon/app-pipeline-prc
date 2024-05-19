@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        nodejs "NodeJS" // Asegúrate de que este nombre coincida con el que has configurado en Jenkins
+        nodejs "my-node" // Asegúrate de que este nombre coincida con el que has configurado en Jenkins
     }
     stages {
         stage('Install Dependencies') {
