@@ -1,9 +1,20 @@
 pipeline {
     agent any
     tools {
-        nodejs "my-node" // Nombre que diste a la instalación de NodeJS en Jenkins
+        nodejs "NodeJS"
     }
     stages {
+        stage('Verify Node.js Installation') {
+            steps {
+                sh 'node --version'
+                sh 'npm --version'
+            }
+        }
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/jpmonzon/app-pipeline-prc', credentialsId: 'aff89bd5-5d40-4f6d-a7c5-e146851730c0'
+            }
+        }
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -19,7 +30,17 @@ pipeline {
                 sh 'npm test'
             }
         }
+        stage('Deploy') {
+            steps {
+                script {
+                    def remoteHost = "user@your-server.com"
+                    def remoteDir = "/path/to/your/app"
 
+                    sh "scp -r * ${remoteHost}:${remoteDir}"
+                    sh "ssh ${remoteHost} 'cd ${remoteDir} && npm install && npm run start'"
+                }
+            }
+        }
     }
     post {
         always {
