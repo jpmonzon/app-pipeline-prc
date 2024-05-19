@@ -7,9 +7,10 @@ pipeline {
     stages {
         stage('Preparation') {
             steps {
-                sh 'node --version'
-                sh 'npm --version'
-                sh 'env' // Imprime las variables de entorno para verificar configuraciones
+                sh 'echo "PATH: $PATH"' // Imprime el PATH para verificar las ubicaciones de Node.js y npm
+                sh 'node --version' // Verifica la versión de Node.js
+                sh 'npm --version' // Verifica la versión de npm
+                sh 'env' // Imprime las variables de entorno para ver la configuración general
             }
         }
         stage('Install Dependencies') {
