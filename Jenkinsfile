@@ -1,37 +1,37 @@
-pipeline {
+    pipeline {
     agent any
-    
-    tools {
-        nodejs 'my-node' // Nombre del tool de Node.js configurado en Jenkins
-    }
+
     stages {
-     /* stage('Preparation') {
+        stage('Checkout') {
             steps {
-                script {
-                    def nodeHome = tool name: 'my-node', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-                    env.PATH = "${nodeHome}/bin:${env.PATH}"
-                }
-                sh 'echo "Using Node.js version:"'
-                sh 'node --version'
-                sh 'echo "Using npm version:"'
-                sh 'npm --version'
-            }
-        }*/
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
+                // Clona el repositorio desde Git
+                git url: 'https://github.com/cyberalejo/my-PRC-project.git', branch: 'master'
             }
         }
-        // Otras etapas del pipeline
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Construye la imagen Docker
+                    dockerImage = docker.build("my-python-app:${env.BUILD_ID}")
+                }
+            }
+        }
+        stage('Run Docker Container') {
+            steps {
+                script {
+                    // Corre el contenedor Docker
+                    dockerImage.run('-p 8000:8000')
+                }
+            }
+        }
     }
-       
 
     post {
         always {
-            echo 'Pipeline finished.'
+            cleanWs()
         }
         success {
-            echo 'Pipeline succeeded.'
+            echo 'Pipeline completed successfully!'
         }
         failure {
             echo 'Pipeline failed.'
