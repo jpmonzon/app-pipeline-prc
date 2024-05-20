@@ -5,7 +5,7 @@
         stage('Checkout') {
             steps {
                 // Clona el repositorio desde Git
-                git url: 'https://github.com/jpmonzon/app-pipeline-prc', branch: 'master'
+                git url: 'https://github.com/jpmonzon/app-pipeline-prc', branch: 'main'
             }
         }
         stage('Build Docker Image') {
