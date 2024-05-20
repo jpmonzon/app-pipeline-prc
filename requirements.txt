@@ -1,0 +1,16 @@
+#Django==4.2.13     # Allows updates within the 3.2.x and 3.3.x series
+Flask==3.0.3       # Pins to an exact version
+
+# Data handling and analysis
+#pandas>=1.4
+#numpy
+
+# Machine learning 
+#scikit-learn==1.1.1
+
+# API development
+#requests
+#marshmallow>=3.0.0rc7  # For serialization/deserialization 
+
+# Testing framework
+#pytest
