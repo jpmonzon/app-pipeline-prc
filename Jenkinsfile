@@ -12,7 +12,8 @@
             steps {
                 script {
                     // Construye la imagen Docker
-                    dockerImage = docker.build("my-python-app:${env.BUILD_ID}")
+                    dockerImage = sh(script: "sudo docker build -t my-python-app:${env.BUILD_ID} .", returnStdout: true).trim()
+
                 }
             }
         }
