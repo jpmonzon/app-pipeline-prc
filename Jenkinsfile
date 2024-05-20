@@ -12,7 +12,7 @@
             steps {
                 script {
                     // Construye la imagen Docker
-                    dockerImage = docker.build("app.py:${env.BUILD_ID}")
+                    dockerImage = docker.build("my-python-app:${env.BUILD_ID}")
                 }
             }
         }
