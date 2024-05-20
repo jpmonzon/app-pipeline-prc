@@ -5,7 +5,7 @@
         stage('Checkout') {
             steps {
                 // Clona el repositorio desde Git
-                git url: 'https://github.com/cyberalejo/my-PRC-project.git', branch: 'master'
+                git url: 'https://github.com/jpmonzon/app-pipeline-prc', branch: 'master'
             }
         }
         stage('Build Docker Image') {
